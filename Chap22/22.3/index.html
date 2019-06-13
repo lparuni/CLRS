@@ -6052,7 +6052,7 @@ $$</p>
             <span class="k">while</span> <span class="o">!</span><span class="n">S</span><span class="p">.</span><span class="n">EMPTY</span><span class="p">()</span>
                 <span class="n">u</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">TOP</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">WHITE</span>
-                    <span class="n">u</span><span class="p">.</span><span class="n">COLOR</span> <span class="o">=</span> <span class="n">GRAY</span>
+                    <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">GRAY</span>
                     <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="n">u</span><span class="p">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">time</span>
                     <span class="k">for</span> <span class="n">each</span> <span class="n">v</span> <span class="err">∈</span> <span class="n">G</span><span class="p">.</span><span class="n">Adj</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">REVERSE</span><span class="p">()</span>
@@ -6060,7 +6060,7 @@ $$</p>
                             <span class="n">v</span><span class="p">.</span><span class="err">π</span> <span class="o">=</span> <span class="n">u</span>
                             <span class="n">S</span><span class="p">.</span><span class="n">PUSH</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
                 <span class="k">else</span> <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">GRAY</span>
-                    <span class="n">u</span><span class="p">.</span><span class="n">COLOR</span> <span class="o">=</span> <span class="n">BLACK</span>
+                    <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">BLACK</span>
                     <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="n">u</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">time</span>
                     <span class="n">S</span><span class="p">.</span><span class="n">POP</span><span class="p">()</span>
