@@ -6015,7 +6015,60 @@ $$</p>
 <blockquote>
 <p>Rewrite the procedure $\text{DFS}$, using a stack to eliminate recursion.</p>
 </blockquote>
-<p>See the algorithm $\text{DFS-STACK}(G)$. Note that by a similar justification to 22.2-3, we may remove line 8 from the original $\text{DFS-VISIT}$ algorithm without changing the final result of the program, that is just working with the colors white and gray.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">DFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="n">vertex</span> <span class="n">u</span> <span class="err">∈</span> <span class="n">G</span><span class="p">.</span><span class="n">V</span>
+        <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">WHITE</span>
+        <span class="n">u</span><span class="p">.</span><span class="err">π</span> <span class="o">=</span> <span class="n">NIL</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="err">Ø</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="n">vertex</span> <span class="n">u</span> <span class="err">∈</span> <span class="n">G</span><span class="p">.</span><span class="n">V</span>
+        <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">WHITE</span>
+            <span class="n">S</span><span class="p">.</span><span class="n">PUSH</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="k">while</span> <span class="o">!</span><span class="n">S</span><span class="p">.</span><span class="n">EMPTY</span><span class="p">()</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">TOP</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">WHITE</span>
+                    <span class="n">u</span><span class="p">.</span><span class="n">COLOR</span> <span class="o">=</span> <span class="n">GRAY</span>
+                    <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="n">u</span><span class="p">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">time</span>
+                    <span class="k">for</span> <span class="n">each</span> <span class="n">v</span> <span class="err">∈</span> <span class="n">G</span><span class="p">.</span><span class="n">Adj</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">REVERSE</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">WHITE</span>
+                            <span class="n">v</span><span class="p">.</span><span class="err">π</span> <span class="o">=</span> <span class="n">u</span>
+                            <span class="n">S</span><span class="p">.</span><span class="n">PUSH</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">GRAY</span>
+                    <span class="n">u</span><span class="p">.</span><span class="n">COLOR</span> <span class="o">=</span> <span class="n">BLACK</span>
+                    <span class="n">time</span> <span class="o">=</span> <span class="n">time</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="n">u</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">time</span>
+                    <span class="n">S</span><span class="p">.</span><span class="n">POP</span><span class="p">()</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">BLACK</span>
+                    <span class="n">S</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
 <h2 id="223-8">22.3-8</h2>
 <blockquote>
 <p>Give a counterexample to the conjecture that if a directed graph $G$ contains a path from $u$ to $v$, and if $u.d &lt; v.d$ in a depth-first search of $G$, then $v$ is a descendant of $u$ in the depth-first forest produced.</p>
