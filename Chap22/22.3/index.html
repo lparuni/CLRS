@@ -5923,39 +5923,41 @@
 <ul>
 <li>
 <p>For Directed Graph:</p>
-<ol>
-<li>$\text{BLACK}$ to $\text{BLACK}$ and $\text{WHITE}$ to $\text{WHITE}$ works with everything, we omit this two later.</li>
+</li>
+<li>
+<p>$\text{BLACK}$ to $\text{BLACK}$ and $\text{WHITE}$ to $\text{WHITE}$ works with everything, we omit this two later.</p>
+</li>
 <li>For Cross Edge $(u, v)$, we must have $v.d &lt; v.f &lt; u.d &lt; u.f$, then it could be $\text{WHITE}$ to $\text{BLACK}$, $\text{WHITE}$ to $\text{GRAY}$ and $\text{GRAY}$ to $\text{BLACK}$.</li>
 <li>For Tree Edge and Forward Edge $(u, v)$, we must have $u.d &lt; v.d &lt; v.f &lt; u.f$, then it could be $\text{GRAY}$ to $\text{WHITE}$, $\text{GRAY}$ to $\text{GRAY}$ and $\text{GRAY}$ to $\text{BLACK}$.</li>
 <li>For Back Edge $(u, v)$, we must have $v.d &lt; u.d &lt; u.f &lt; v.f$, then it could be $\text{WHITE}$ to $\text{GRAY}$, $\text{GRAY}$ to $\text{GRAY}$ and $\text{BLACK}$ to $\text{GRAY}$.</li>
-</ol>
+</ul>
 <p>$$
-\begin{array}{c|ccc}
-from\backslash to &amp; \text{BLACK}                &amp; \text{GRAY}                &amp; \text{WHITE} \\
-\hline
-\text{BLACK}      &amp; \text{Allkinds}             &amp; \text{Back}                &amp; - \\
-\text{GRAY}       &amp; \text{Tree, Forward, Cross} &amp; \text{Tree, Forward, Back} &amp; \text{Tree, Forward} \\
-\text{WHITE}      &amp; \text{Cross}                &amp; \text{Cross, Back}         &amp; \text{Allkinds}
-\end{array}
-$$</p>
-</li>
+  \begin{array}{c|ccc}
+  from\backslash to &amp; \text{BLACK}                &amp; \text{GRAY}                &amp; \text{WHITE} \\
+  \hline
+  \text{BLACK}      &amp; \text{Allkinds}             &amp; \text{Back}                &amp; - \\
+  \text{GRAY}       &amp; \text{Tree, Forward, Cross} &amp; \text{Tree, Forward, Back} &amp; \text{Tree, Forward} \\
+  \text{WHITE}      &amp; \text{Cross}                &amp; \text{Cross, Back}         &amp; \text{Allkinds}
+  \end{array}
+  $$</p>
+<ul>
 <li>
 <p>For Undirected Graph, starting from Directed Chart, we remove the Forward Edge and Cross Edge, and when a Back Edge exist, we add Tree Edge; when a Tree Edge exist, we add Back Edge. This is correct for following reason:</p>
-<ol>
-<li>Theorem 22.10: In a depth-first search of an undirected graph $G$, every edge of $G$ is either a tree edge or a back edge. So Tree edge and back edge only.</li>
-<li>If $(u, v)$ is a Tree edge from $u$'s perspective, $(u, v)$ is also a Back Edge from $v$'s perspective.</li>
-</ol>
-<p>$$
-\begin{array}{c|ccc}
-from\backslash to &amp; \text{BLACK}      &amp; \text{GRAY}       &amp; \text{WHITE} \\
-\hline
-\text{BLACK}      &amp; \text{Tree, Back} &amp; \text{Tree, Back} &amp; - \\
-\text{GRAY}       &amp; \text{Tree, Back} &amp; \text{Tree, Back} &amp; \text{Tree, Back} \\
-\text{WHITE}      &amp; -                 &amp; \text{Tree, Back} &amp; \text{Tree, Back}
-\end{array}
-$$</p>
 </li>
+<li>
+<p>Theorem 22.10: In a depth-first search of an undirected graph $G$, every edge of $G$ is either a tree edge or a back edge. So Tree edge and back edge only.</p>
+</li>
+<li>If $(u, v)$ is a Tree edge from $u$'s perspective, $(u, v)$ is also a Back Edge from $v$'s perspective.</li>
 </ul>
+<p>$$
+  \begin{array}{c|ccc}
+  from\backslash to &amp; \text{BLACK}      &amp; \text{GRAY}       &amp; \text{WHITE} \\
+  \hline
+  \text{BLACK}      &amp; \text{Tree, Back} &amp; \text{Tree, Back} &amp; - \\
+  \text{GRAY}       &amp; \text{Tree, Back} &amp; \text{Tree, Back} &amp; \text{Tree, Back} \\
+  \text{WHITE}      &amp; -                 &amp; \text{Tree, Back} &amp; \text{Tree, Back}
+  \end{array}
+  $$</p>
 <h2 id="223-2">22.3-2</h2>
 <blockquote>
 <p>Show how depth-first search works on the graph of Figure 22.6. Assume that the <strong>for</strong> loop of lines 5–7 of the $\text{DFS}$ procedure considers the vertices in alphabetical order, and assume that each adjacency list is ordered alphabetically. Show the discovery and finishing times for each vertex, and show the classification of each edge.</p>
@@ -6065,7 +6067,7 @@ $$</p>
                     <span class="n">u</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">time</span>
                     <span class="n">S</span><span class="p">.</span><span class="n">POP</span><span class="p">()</span>
                 <span class="k">else</span> <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">BLACK</span>
-                    <span class="n">S</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="n">S</span><span class="p">.</span><span class="n">POP</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
 
@@ -6210,15 +6212,13 @@ $$</p>
 <p>This $\text{DFS}$ increments a counter each time $\text{DFS-VISIT}$ is called to grow a new tree in the $\text{DFS}$ forest. Every vertex visited (and added to the tree) by $\text{DFS-VISIT}$ is labeled with that same counter value. Thus $u.vv = v.cc$ if and only if $u$ and $v$ are visited in the same call to $\text{DFS-VISIT}$ from $\text{DFS}$, and the final value of the counter is the number of calls that were made to $\text{DFS-VISIT}$ by $\text{DFS}$. Also, since every vertex is visited eventually, every vertex is labeled.</p>
 <p>Thus all we need to show is that the vertices visited by each call to $\text{DFS-VISIT}$ from $\text{DFS}$ are exactly the vertices in one connected component of $G$.</p>
 <ul>
-<li>
-<p>All vertices in a connected component are visited by one call to $\text{DFS-VISIT}$ from $\text{DFS}$:</p>
-<p>Let $u$ be the first vertex in component $C$ visited by $\text{DFS-VISIT}$. Since a vertex becomes non-white only when it is visited, all vertices in $C$ are white when $\text{DFS-VISIT}$ is called for $u$. Thus, by the white-path theorem, all vertices in $C$ become descendants of $u$ in the forest, which means that all vertices in $C$ are visited (by recursive calls to $\text{DFS-VISIT}$) before $\text{DFS-VISIT}$ returns to $\text{DFS}$.</p>
-</li>
-<li>
-<p>All vertices visited by one call to $\text{DFS-VISIT}$ from $\text{DFS}$ are in the same connected component:</p>
-<p>If two vertices are visited in the same call to $\text{DFS-VISIT}$ from $\text{DFS}$, they are in the same connected component, because vertices are visited only by following paths in $G$ (by following edges found in adjacency lists, starting from some vertex).</p>
-</li>
+<li>All vertices in a connected component are visited by one call to $\text{DFS-VISIT}$ from $\text{DFS}$:</li>
 </ul>
+<p>Let $u$ be the first vertex in component $C$ visited by $\text{DFS-VISIT}$. Since a vertex becomes non-white only when it is visited, all vertices in $C$ are white when $\text{DFS-VISIT}$ is called for $u$. Thus, by the white-path theorem, all vertices in $C$ become descendants of $u$ in the forest, which means that all vertices in $C$ are visited (by recursive calls to $\text{DFS-VISIT}$) before $\text{DFS-VISIT}$ returns to $\text{DFS}$.</p>
+<ul>
+<li>All vertices visited by one call to $\text{DFS-VISIT}$ from $\text{DFS}$ are in the same connected component:</li>
+</ul>
+<p>If two vertices are visited in the same call to $\text{DFS-VISIT}$ from $\text{DFS}$, they are in the same connected component, because vertices are visited only by following paths in $G$ (by following edges found in adjacency lists, starting from some vertex).</p>
 <h2 id="223-13-star">22.3-13 $\star$</h2>
 <blockquote>
 <p>A directed graph $G = (V, E)$ is <strong><em>singly connected</em></strong> if $u \leadsto v$ implies that $G$ contains at most one simple path from $u$ to $v$ for all vertices $u, v \in V$. Give an efficient algorithm to determine whether or not a directed graph is singly connected.</p>
